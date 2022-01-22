@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 public class PlayerScript : NetworkBehaviour
 {
+    public bool isBall = false;
     public override void OnStartLocalPlayer()
     {
         Camera.main.transform.SetParent(transform);
