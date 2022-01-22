@@ -12,7 +12,7 @@ public class PlayerScript : NetworkBehaviour
     Vector3 yVelocity;
     public override void OnStartLocalPlayer()
     {
-        isBall = false;
+        //isBall = false;
        if(!isBall)
         {
             rb.freezeRotation = true;
