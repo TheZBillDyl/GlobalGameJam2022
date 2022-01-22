@@ -366,6 +366,8 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194230}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -438,6 +440,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c21661acf4371b498ce112a4116a97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 1, z: 3}
+  isBall: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 2070116354
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &1144506340
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +532,7 @@ MonoBehaviour:
   ReliableMaxMessageSize: 298449
   UnreliableMaxMessageSize: 1199
   debugLog: 0
-  statisticsGUI: 0
+  statisticsGUI: 1
   statisticsLog: 0
 --- !u!4 &1144506344
 Transform:
@@ -529,7 +563,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   autoStartServerBuild: 1
-  serverTickRate: 120
+  serverTickRate: 60
   offlineScene: Assets/Scenes/Online.unity
   onlineScene: Assets/Scenes/Online.unity
   transport: {fileID: 1144506342}
@@ -539,7 +573,9 @@ MonoBehaviour:
   playerPrefab: {fileID: 1196111292181714525, guid: 55ed9df68a5426a468a417bc2c51905b, type: 3}
   autoCreatePlayer: 0
   playerSpawnMethod: 1
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 1757053274686312763, guid: 004347c819ab9454d9938a4939a43612, type: 3}
+  - {fileID: 5919574600561984878, guid: 5b242eeafc0f2844093bd1d2be81d0bd, type: 3}
 --- !u!1 &1335381477
 GameObject:
   m_ObjectHideFlags: 0
