@@ -206,10 +206,10 @@ MonoBehaviour:
   clientAuthority: 0
   syncVelocity: 1
   clearVelocity: 0
-  velocitySensitivity: 0.1
+  velocitySensitivity: 0
   syncAngularVelocity: 1
   clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
+  angularVelocitySensitivity: 0
 --- !u!114 &356900786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,10 +359,10 @@ MonoBehaviour:
   clientAuthority: 0
   syncVelocity: 1
   clearVelocity: 0
-  velocitySensitivity: 0.1
+  velocitySensitivity: 0
   syncAngularVelocity: 1
   clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
+  angularVelocitySensitivity: 0
 --- !u!114 &399627587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,10 +512,10 @@ MonoBehaviour:
   clientAuthority: 0
   syncVelocity: 1
   clearVelocity: 0
-  velocitySensitivity: 0.1
+  velocitySensitivity: 0
   syncAngularVelocity: 1
   clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
+  angularVelocitySensitivity: 0
 --- !u!114 &580638179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,10 +758,10 @@ MonoBehaviour:
   clientAuthority: 0
   syncVelocity: 1
   clearVelocity: 0
-  velocitySensitivity: 0.1
+  velocitySensitivity: 0
   syncAngularVelocity: 1
   clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
+  angularVelocitySensitivity: 0
 --- !u!114 &761051849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1126,10 +1126,10 @@ MonoBehaviour:
   clientAuthority: 0
   syncVelocity: 1
   clearVelocity: 0
-  velocitySensitivity: 0.1
+  velocitySensitivity: 0
   syncAngularVelocity: 1
   clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
+  angularVelocitySensitivity: 0
 --- !u!114 &1137251329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,10 +1408,10 @@ MonoBehaviour:
   clientAuthority: 0
   syncVelocity: 1
   clearVelocity: 0
-  velocitySensitivity: 0.1
+  velocitySensitivity: 0
   syncAngularVelocity: 1
   clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
+  angularVelocitySensitivity: 0
 --- !u!114 &2051571103
 MonoBehaviour:
   m_ObjectHideFlags: 0
