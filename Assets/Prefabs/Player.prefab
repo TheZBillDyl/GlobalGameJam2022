@@ -224,3 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+<<<<<<< Updated upstream
+=======
+  maxSize: 20
+  incrementAmount: 0.5
+>>>>>>> Stashed changes
