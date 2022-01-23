@@ -20,6 +20,7 @@ public class MultiNetworkManager : NetworkManager
         GameObject gameobject = Instantiate(playerPrefab);
         PlayerScript player = gameobject.GetComponent<PlayerScript>();
         player.isBall = message.ball;
+        Debug.Log("Set player to ball after spawning, before setting as player");
         NetworkServer.AddPlayerForConnection(conn, gameobject);
     }
     public struct CreateCharacterMessage : NetworkMessage

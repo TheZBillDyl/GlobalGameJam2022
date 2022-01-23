@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 public class PlayerScript : NetworkBehaviour
 {
+    [SyncVar(hook = nameof(setCamera))]
     public bool isBall = false;
     public Rigidbody rb;
     public float speed, jumpPower, turnSpeed;
@@ -49,5 +50,9 @@ public class PlayerScript : NetworkBehaviour
             Vector3 camDir = Camera.main.transform.forward;
             rb.velocity = new Vector3(speed * moveY * camDir.x, rb.velocity.y, speed * moveY * camDir.z);
         }
+    }
+    void setCamera(bool old, bool newbool)
+    {
+        Camera.main.GetComponent<CameraForPlay>().isBall = newbool;
     }
 }

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.05
+  syncInterval: 0.02
   target: {fileID: 3587942836197335249}
   clientAuthority: 1
   syncVelocity: 1
@@ -219,6 +219,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1196111292181714525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca75a82ec1a8e2546b2cbe19e4570d13, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b16420b88d7c56488d35dbdae6f630c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
