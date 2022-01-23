@@ -11,13 +11,11 @@ GameObject:
   - component: {fileID: 1196111292181714514}
   - component: {fileID: 1196111292181714526}
   - component: {fileID: 1196111292181714527}
-  - component: {fileID: 1196111292181714524}
   - component: {fileID: 9074945940351594070}
   - component: {fileID: 481733186924702893}
   - component: {fileID: 7482965001088360636}
   - component: {fileID: 3587942836197335249}
   - component: {fileID: 2986407718130140165}
-  - component: {fileID: 8991096683666855542}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -90,28 +88,6 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
---- !u!114 &1196111292181714524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196111292181714525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618e170784ab5e64f93d0d19441c0780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  isBall: 0
-  rb: {fileID: 3587942836197335249}
-  speed: 10
-  jumpPower: 10
-  turnSpeed: 100
-  jumpButton: 32
-  runner: {fileID: 1757053274686312763, guid: 004347c819ab9454d9938a4939a43612, type: 3}
-  ball: {fileID: 5919574600561984878, guid: 5b242eeafc0f2844093bd1d2be81d0bd, type: 3}
 --- !u!114 &9074945940351594070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,19 +188,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8991096683666855542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196111292181714525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b16420b88d7c56488d35dbdae6f630c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  maxSize: 20
-  incrementAmount: 0.5

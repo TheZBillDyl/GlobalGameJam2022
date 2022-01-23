@@ -5,6 +5,8 @@ using Mirror;
 public class MultiNetworkManager : NetworkManager
 {
     public GameObject runner, ball;
+    private NetworkConnection ballConnection = null;
+    private float ballCounter = 0f;
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -15,10 +17,14 @@ public class MultiNetworkManager : NetworkManager
         base.OnClientConnect();
         CreateCharacterMessage characterMessage;
         if (NetworkServer.connections.Count == 1)
-            characterMessage = new CreateCharacterMessage { ball = true };
+        {
+            ballConnection = conn;            
+        }
         else
+        {
             characterMessage = new CreateCharacterMessage { ball = false };
-        conn.Send(characterMessage);
+            conn.Send(characterMessage);
+        }            
     }
     void OnCreateCharacter(NetworkConnection conn, CreateCharacterMessage message)
     {
@@ -33,6 +39,23 @@ public class MultiNetworkManager : NetworkManager
         }
         // This spawns the new player on all clients
         NetworkServer.AddPlayerForConnection(conn, thePlayer);
+    }
+    private void Update()
+    {
+        if(ballConnection != null)
+        {
+            if (ballCounter < 10f)
+            {
+                ballCounter += Time.deltaTime;
+            }
+            else
+            {
+                ballCounter = 0f;
+                CreateCharacterMessage characterMessage = new CreateCharacterMessage { ball = true };
+                ballConnection.Send(characterMessage);
+                ballConnection = null;
+            }
+        }        
     }
 }
 public struct CreateCharacterMessage : NetworkMessage
