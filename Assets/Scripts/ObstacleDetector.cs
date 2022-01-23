@@ -15,8 +15,8 @@ public class ObstacleDetector : NetworkBehaviour
         if (collision.collider.CompareTag("Obstacle"))
         {
             print("Collided" + collision.collider.name);
-            
-            Destroy(collision.gameObject);
+            collision.collider.tag = "Untagged";
+            Destroy(collision.gameObject, 1.5f);
             this.transform.localScale += new Vector3(incrementAmount, incrementAmount, incrementAmount);
             transform.localScale = Vector3.ClampMagnitude(transform.localScale, maxSize);
             var c = virtualCamera.GetCinemachineComponent<CinemachineOrbitalTransposer>();
