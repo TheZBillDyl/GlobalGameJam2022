@@ -43,25 +43,30 @@ public class RunnerController : NetworkBehaviour
             {
                 velocity.y = -2f;
             }
+            
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
-            Vector3 move = transform.right * x + transform.forward * z;
-            controller.Move(move * speed * Time.deltaTime);
+            Vector3 move = transform.right * x + transform.forward * z;            
 
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-            Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-            transform.Rotate(Vector3.up * mouseX);
-
-            if(Input.GetButtonDown("Jump") && isGrounded)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
+            
+            transform.Rotate(Vector3.up * mouseX);            
 
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
+
+            if (!pauseMenu.singleton.isPaused)
+            {
+                controller.Move(move * speed * Time.deltaTime);
+                Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                }
+            }
         }        
     }
 }

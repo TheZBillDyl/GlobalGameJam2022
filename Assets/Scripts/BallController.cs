@@ -34,9 +34,11 @@ public class BallController : NetworkBehaviour
     private void FixedUpdate()
     {
         if (isLocalPlayer)
-        {
-            Vector3 camDir = Vcam.transform.forward;
-            rb.velocity = new Vector3(speed * moveY * camDir.x, rb.velocity.y, speed * moveY * camDir.z);
+        {         
+            if (!pauseMenu.singleton.isPaused) {
+                Vector3 camDir = Vcam.transform.forward;
+                rb.velocity = new Vector3(speed * moveY * camDir.x, rb.velocity.y, speed * moveY * camDir.z);
+            }
         }
     }
 }
