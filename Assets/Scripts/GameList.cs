@@ -9,7 +9,7 @@ public class GameList : MonoBehaviour
     Regex regex;
     public void StartHost()
     {
-        NetworkManager.singleton.StartHost();
+        MultiNetworkManager.singleton.StartHost();
     }
     public void JoinGame()
     {
@@ -17,8 +17,8 @@ public class GameList : MonoBehaviour
 
         if (regex.Match(ip).Success)
         {
-            NetworkManager.singleton.networkAddress = ip;
-            NetworkManager.singleton.StartClient();
+            MultiNetworkManager.singleton.networkAddress = ip;
+            MultiNetworkManager.singleton.StartClient();
         }
         else
             print("Error: Wrong IP " + ip);
