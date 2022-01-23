@@ -17,7 +17,7 @@ public class MultiNetworkManager : NetworkManager
             characterMessage = new CreateCharacterMessage { ball = true };
         else
             characterMessage = new CreateCharacterMessage { ball = false };
-        NetworkClient.connection.Send(characterMessage);        
+        NetworkClient.connection.Send(characterMessage);
     }
     void OnCreateCharacter(NetworkConnection conn, CreateCharacterMessage message)
     {
