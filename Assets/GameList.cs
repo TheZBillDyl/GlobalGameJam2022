@@ -4,7 +4,7 @@ using TMPro;
 using System.Text.RegularExpressions;
 public class GameList : MonoBehaviour
 {
-    string ip = "localhost";
+    string ip = "127.0.0.1";
     [SerializeField] TMP_InputField inputField;
     Regex regex;
     public void StartHost()

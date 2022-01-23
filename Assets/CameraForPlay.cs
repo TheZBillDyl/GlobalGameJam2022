@@ -9,11 +9,14 @@ public class CameraForPlay : MonoBehaviour
     public bool isBall;
     public float rotationSpeed = 10;
     public float smoothFactor = .2f;
+    bool resetFirstPerson = true;
+    float rotationY;
+    [SerializeField] float minimumY, maximumY;
     public void StartCam()
     {
-        if (isBall)
+        if (!isBall)
         {
-            transform.localPosition = new Vector3(0, 10, -1);
+            transform.position = target.position;
             transform.LookAt(target);
         }
         else
@@ -24,7 +27,7 @@ public class CameraForPlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isBall && target != null)
+        if (isBall && target != null)
         {
             transform.position = target.position + offset;
 
@@ -35,6 +38,22 @@ public class CameraForPlay : MonoBehaviour
             Vector3 newPos = target.position + offset;
             transform.position = Vector3.Slerp(transform.position, newPos, smoothFactor);
             transform.LookAt(target);
+            resetFirstPerson = true;
+        }else if(!isBall && target!= null)
+        {
+            transform.position = target.position;
+            if (resetFirstPerson)
+            {
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+                resetFirstPerson = false;
+            }
+            float moveX = Input.GetAxis("Mouse X");
+            float moveY = Input.GetAxis("Mouse Y");
+            rotationY += moveY;
+            rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
+
+            transform.Rotate(0, moveX * rotationSpeed, 0);
+            transform.localEulerAngles = new Vector3(-rotationY * rotationSpeed, transform.localEulerAngles.y, 0);
         }
     }
 }

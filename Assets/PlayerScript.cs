@@ -46,13 +46,8 @@ public class PlayerScript : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (isBall)
-                rb.velocity = new Vector3(moveX * speed, rb.velocity.y, moveY * speed);
-            else
-            {
-                Vector3 camDir = Camera.main.transform.forward;
-                rb.velocity = new Vector3(speed * moveY * camDir.x, rb.velocity.y, speed * moveY * camDir.z);
-            }
+            Vector3 camDir = Camera.main.transform.forward;
+            rb.velocity = new Vector3(speed * moveY * camDir.x, rb.velocity.y, speed * moveY * camDir.z);
         }
     }
 }
