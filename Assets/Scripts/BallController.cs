@@ -8,8 +8,7 @@ public class BallController : NetworkBehaviour
     CinemachineVirtualCamera Vcam;
     public Rigidbody rb;
     public float speed;
-    float moveX, moveY;
-    Vector3 yVelocity;
+    float moveY;
     void Start()
     {
         if (isLocalPlayer)
@@ -24,7 +23,6 @@ public class BallController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            moveX = Input.GetAxisRaw("Horizontal");
             moveY = Input.GetAxisRaw("Vertical");            
         }
     }
@@ -33,8 +31,20 @@ public class BallController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            Vector3 camDir = Vcam.transform.forward;
+            Vector3 camDir = Vector3.zero;
+            if (Vcam != null)
+                 camDir = Vcam.transform.forward;
+
             rb.velocity = new Vector3(speed * moveY * camDir.x, rb.velocity.y, speed * moveY * camDir.z);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            collision.gameObject.SetActive(false);
+            GameObject.FindObjectOfType<MultiNetworkManager>().CheckWinner();
         }
     }
 }

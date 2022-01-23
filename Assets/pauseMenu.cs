@@ -12,14 +12,16 @@ public class pauseMenu : MonoBehaviour
     MultiNetworkManager manager;
     private void Start()
     {
-        singleton = gameObject.GetComponent<pauseMenu>();
-        manager = GameObject.Find("NetworkManager").GetComponent<MultiNetworkManager>();
+        singleton = this;
+        manager = GameObject.FindObjectOfType<MultiNetworkManager>();
+        if(pauseMenuCanvas != null)
+            pauseMenuCanvas.SetActive(false);
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseMenuCanvas.activeSelf)
+            if (pauseMenuCanvas.activeInHierarchy)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 isPaused = false;

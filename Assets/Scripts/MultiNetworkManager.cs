@@ -4,9 +4,14 @@ using UnityEngine;
 using Mirror;
 public class MultiNetworkManager : NetworkManager
 {
-    public GameObject runner, ball;
+    public GameObject runner, ball, countDownCanvas;
     private NetworkConnection ballConnection = null;
-    private float ballCounter = 0f;
+    public float ballCounter = 0f;
+    public float maxBallCounter = 10f;
+    private GameObject currentCountDownCanvas;
+    public string winner = "";
+    public int impactCount = 0;
+    List<GameObject> playerList = new List<GameObject>();
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -18,7 +23,9 @@ public class MultiNetworkManager : NetworkManager
         CreateCharacterMessage characterMessage;
         if (NetworkServer.connections.Count == 1)
         {
-            ballConnection = conn;            
+            ballConnection = conn;
+
+            currentCountDownCanvas = Instantiate(countDownCanvas, Vector3.zero, Quaternion.identity);
         }
         else
         {
@@ -37,6 +44,7 @@ public class MultiNetworkManager : NetworkManager
         {
             thePlayer = (GameObject)Instantiate(ball, Vector3.zero, Quaternion.identity);
         }
+        playerList.Add(thePlayer);
         // This spawns the new player on all clients
         NetworkServer.AddPlayerForConnection(conn, thePlayer);
     }
@@ -44,7 +52,7 @@ public class MultiNetworkManager : NetworkManager
     {
         if(ballConnection != null)
         {
-            if (ballCounter < 10f)
+            if (ballCounter < maxBallCounter)
             {
                 ballCounter += Time.deltaTime;
             }
@@ -54,8 +62,49 @@ public class MultiNetworkManager : NetworkManager
                 CreateCharacterMessage characterMessage = new CreateCharacterMessage { ball = true };
                 ballConnection.Send(characterMessage);
                 ballConnection = null;
+                currentCountDownCanvas.SetActive(false);
             }
         }        
+    }
+    public void SetWinner(string win)
+    {
+        winner = win;
+    }
+
+    public void CheckWinner()
+    {
+        impactCount++;
+        if(impactCount >= NetworkServer.connections.Count - 1)
+        {
+            SetWinner("Ball");
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                if(playerList[i].TryGetComponent<BallController>(out BallController c))
+                {
+                    DontDestroyOnLoad(playerList[i]);
+                }
+                else
+                {
+                    Destroy(playerList[i]);
+                    playerList.RemoveAt(i);
+                    i--;
+                }
+            }
+            ServerChangeScene("EndOfGame");
+        }
+    }
+
+    public override void OnStopServer()
+    {
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            if (playerList[i] != null)
+            {
+                Destroy(playerList[i]);
+            }
+        }
+        playerList.Clear();
+        base.OnStopServer();
     }
 }
 public struct CreateCharacterMessage : NetworkMessage
