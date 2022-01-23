@@ -4,12 +4,13 @@ using UnityEngine;
 using Mirror;
 public class MultiNetworkManager : NetworkManager
 {
+    public GameObject runner, ball;
     public override void OnStartServer()
     {
         base.OnStartServer();
         NetworkServer.RegisterHandler<CreateCharacterMessage>(OnCreateCharacter);
     }
-    public override void OnClientConnect()
+    public override void OnClientConnect(NetworkConnection conn)
     {
         base.OnClientConnect();
         CreateCharacterMessage characterMessage;
@@ -17,17 +18,24 @@ public class MultiNetworkManager : NetworkManager
             characterMessage = new CreateCharacterMessage { ball = true };
         else
             characterMessage = new CreateCharacterMessage { ball = false };
-        NetworkClient.connection.Send(characterMessage);
+        conn.Send(characterMessage);
     }
     void OnCreateCharacter(NetworkConnection conn, CreateCharacterMessage message)
     {
-        GameObject gameobject = Instantiate(playerPrefab);
-        PlayerScript player = gameobject.GetComponent<PlayerScript>();
-        player.isBall = message.ball;        
-        NetworkServer.AddPlayerForConnection(conn, gameobject);
+        GameObject thePlayer;
+        if (!message.ball)
+        {
+            thePlayer = (GameObject)Instantiate(runner, Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            thePlayer = (GameObject)Instantiate(ball, Vector3.zero, Quaternion.identity);
+        }
+        // This spawns the new player on all clients
+        NetworkServer.AddPlayerForConnection(conn, thePlayer);
     }
-    public struct CreateCharacterMessage : NetworkMessage
-    {
-        public bool ball;
-    }
+}
+public struct CreateCharacterMessage : NetworkMessage
+{
+    public bool ball;
 }

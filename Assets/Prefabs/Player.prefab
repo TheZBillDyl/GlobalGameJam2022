@@ -110,6 +110,8 @@ MonoBehaviour:
   jumpPower: 10
   turnSpeed: 100
   jumpButton: 32
+  runner: {fileID: 1757053274686312763, guid: 004347c819ab9454d9938a4939a43612, type: 3}
+  ball: {fileID: 5919574600561984878, guid: 5b242eeafc0f2844093bd1d2be81d0bd, type: 3}
 --- !u!114 &9074945940351594070
 MonoBehaviour:
   m_ObjectHideFlags: 0
