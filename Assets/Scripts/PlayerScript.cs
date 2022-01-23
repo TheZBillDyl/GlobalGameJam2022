@@ -11,6 +11,7 @@ public class PlayerScript : NetworkBehaviour
     float moveX, moveY;
     [SerializeField] KeyCode jumpButton;
     Vector3 yVelocity;
+    CameraForPlay cam;
     public override void OnStartLocalPlayer()
     {
         //isBall = false;
@@ -18,7 +19,7 @@ public class PlayerScript : NetworkBehaviour
         {
             rb.freezeRotation = true;
         }
-        CameraForPlay cam = Camera.main.GetComponent<CameraForPlay>();
+        cam = GameObject.FindObjectOfType<CameraForPlay>();
         cam.target = this.transform;
         cam.isBall = isBall;
         cam.StartCam();
@@ -47,12 +48,13 @@ public class PlayerScript : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            Vector3 camDir = Camera.main.transform.forward;
+            Vector3 camDir = cam.transform.forward;
             rb.velocity = new Vector3(speed * moveY * camDir.x, rb.velocity.y, speed * moveY * camDir.z);
         }
     }
     void setCamera(bool old, bool newbool)
     {
-        Camera.main.GetComponent<CameraForPlay>().isBall = newbool;
+        if(cam != null)
+            cam.isBall = newbool;
     }
 }
