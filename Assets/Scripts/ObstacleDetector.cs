@@ -3,18 +3,16 @@ using Mirror;
 using Cinemachine;
 public class ObstacleDetector : NetworkBehaviour
 {
-    PlayerScript playerScript;
     [SerializeField] float maxSize = 20, incrementAmount = 0.5f;
     CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
     {
-        playerScript = GetComponent<PlayerScript>();
         virtualCamera = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Obstacle") && playerScript.isBall)
+        if (collision.collider.CompareTag("Obstacle"))
         {
             print("Collided" + collision.collider.name);
             

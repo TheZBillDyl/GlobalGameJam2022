@@ -378,7 +378,6 @@ GameObject:
   - component: {fileID: 394759940}
   - component: {fileID: 394759943}
   - component: {fileID: 394759942}
-  - component: {fileID: 394759944}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -429,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394759939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.070309, y: 185.33803, z: -52.202938}
+  m_LocalPosition: {x: 21.070309, y: 188.33803, z: -61.202938}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 262058225}
@@ -486,26 +485,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &394759944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394759939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c21661acf4371b498ce112a4116a97e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: -3}
-  isBall: 0
-  rotationSpeed: 10
-  smoothFactor: 0.2
-  minimumY: -5
-  maximumY: 5
-  c: {fileID: 394759940}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

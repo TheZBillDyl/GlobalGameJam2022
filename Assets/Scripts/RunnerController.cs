@@ -5,14 +5,14 @@ using Cinemachine;
 using Mirror;
 public class RunnerController : NetworkBehaviour
 {
-    GameObject Vcam;
+    CinemachineVirtualCamera Vcam;
     void Start()
     {
         if (isLocalPlayer)
         {
-            Vcam = GameObject.Find("CM vcam1");
-            CinemachineVirtualCamera Cvcam = Vcam.GetComponent<CinemachineVirtualCamera>();
-            Cvcam.Follow = gameObject.transform;
+            Vcam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+            Vcam.Follow = gameObject.transform;
+            Vcam.LookAt = gameObject.transform;
         }        
     }
 
