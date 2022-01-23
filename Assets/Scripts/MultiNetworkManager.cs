@@ -12,15 +12,18 @@ public class MultiNetworkManager : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
-        CreateCharacterMessage characterMessage = new CreateCharacterMessage { ball = true };
-        NetworkClient.connection.Send(characterMessage);
+        CreateCharacterMessage characterMessage;
+        if (NetworkServer.connections.Count == 1)
+            characterMessage = new CreateCharacterMessage { ball = true };
+        else
+            characterMessage = new CreateCharacterMessage { ball = false };
+        NetworkClient.connection.Send(characterMessage);        
     }
     void OnCreateCharacter(NetworkConnection conn, CreateCharacterMessage message)
     {
         GameObject gameobject = Instantiate(playerPrefab);
         PlayerScript player = gameobject.GetComponent<PlayerScript>();
-        player.isBall = message.ball;
-        Debug.Log("Set player to ball after spawning, before setting as player");
+        player.isBall = message.ball;        
         NetworkServer.AddPlayerForConnection(conn, gameobject);
     }
     public struct CreateCharacterMessage : NetworkMessage
