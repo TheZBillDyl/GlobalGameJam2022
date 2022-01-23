@@ -49,7 +49,7 @@ public class MultiNetworkManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, thePlayer);
     }
     private void Update()
-    {
+    {        
         if(ballConnection != null)
         {
             if (ballCounter < maxBallCounter)

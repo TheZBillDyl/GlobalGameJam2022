@@ -11,13 +11,13 @@ public class DisplayWInner : MonoBehaviour
         BallController ballController = GameObject.FindObjectOfType<BallController>();
         string winner = manager.winner;
 
-        if (winner == "Ball" && ballController.isLocalPlayer)
+        if (winner == "Ball" && ballController != null)
             text.text = "You Win!";
-        else if (winner == "Runner" && ballController.isLocalPlayer)
+        else if (winner == "Runner" && ballController != null)
             text.text = "You Lose";
-        else if (winner == "Runner" && !ballController.isLocalPlayer)
+        else if (winner == "Runner" && ballController == null)
             text.text = "You Win!";
-        else if (winner == "Ball" && !ballController.isLocalPlayer)
+        else if (winner == "Ball" && ballController == null)
             text.text = "You Lose!";
     }
 

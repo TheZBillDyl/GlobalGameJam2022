@@ -19,7 +19,7 @@ public class pauseMenu : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (pauseMenuCanvas != null && Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseMenuCanvas.activeInHierarchy)
             {
@@ -33,6 +33,9 @@ public class pauseMenu : MonoBehaviour
                 isPaused = true;
                 pauseMenuCanvas.SetActive(true);
             }
+        }else if(pauseMenuCanvas == null)
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     public void Resume()
@@ -43,16 +46,23 @@ public class pauseMenu : MonoBehaviour
     }
     public void Disconnect()
     {
-        if (NetworkClient.localPlayer.isClientOnly)
+        if(NetworkClient.localPlayer == null)
         {
             NetworkClient.Disconnect();
         }
         else
         {
-            NetworkServer.DisconnectAll();
-            NetworkClient.Disconnect();
-            manager.gameObject.GetComponent<KcpTransport>().ServerStop();
-        }        
+            if (NetworkClient.localPlayer.isClientOnly)
+            {
+                NetworkClient.Disconnect();
+            }
+            else
+            {
+                NetworkServer.DisconnectAll();
+                NetworkClient.Disconnect();
+                manager.gameObject.GetComponent<KcpTransport>().ServerStop();
+            }
+        }      
     }
     public void Quit()
     {
