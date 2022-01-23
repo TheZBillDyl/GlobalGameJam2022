@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8239660136677646962}
   m_Layer: 0
   m_Name: Runner Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   mouseSensitivity: 800
   controller: {fileID: -4963021240163243852}
   speed: 12
+  jumpHeight: 3
   gravity: -9.81
   groundCheck: {fileID: 1299888076360133185}
   groundDistance: 0.4

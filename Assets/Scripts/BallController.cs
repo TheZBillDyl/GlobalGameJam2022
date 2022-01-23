@@ -14,8 +14,10 @@ public class BallController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            //TODO MAKE SURE CAMERA IS PARENTLESS AND HaS CMBRAIN ENABLED AND VCAM IS ACTIVE
+            Camera.main.gameObject.transform.parent = null;
+            Camera.main.gameObject.GetComponent<CinemachineBrain>().enabled = true;
             Vcam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+            Vcam.gameObject.SetActive(true);
             Vcam.Follow = gameObject.transform;
             Vcam.LookAt = gameObject.transform;
             Cursor.lockState = CursorLockMode.Locked;
